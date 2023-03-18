@@ -11,6 +11,8 @@ app.use(express.json());
 app.post('/email', async (req, res) => {
     const email = req.body;
 
+    if(!email) res.status(400)
+
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         /*port: 587,
@@ -30,7 +32,7 @@ app.post('/email', async (req, res) => {
 
     const info = await transporter.sendMail(msg);
 
-    res.status(500).send("Email Sent Boys");
+    res.status(500).send("No Errors");
 })
 
 app.on('uncaughtException', function (err) {
