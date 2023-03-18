@@ -1,6 +1,8 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 
+require("dotenv").config();
+
 const app = express();
 const PORT = 8080;
 
@@ -10,12 +12,12 @@ app.post('/email', async (req, res) => {
     const email = req.body;
 
     const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
+        host: 'smtp.gmail.com',
+        /*port: 587,
+        secure: false,*/
         auth: {
-            user: 'nicklaus.daugherty@ethereal.email',
-            pass: '4xPmArFNmEMNCp8JJT'
+            user: process.env.EMAIL_SENDER,
+            pass: process.env.EMAIL_SENDER_PASS
         }
     });
 
